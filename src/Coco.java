@@ -27,16 +27,25 @@ public class Coco {
         }
     }
 
+    private static String getColour(String content, int colour, int type) {
+        boolean hasType = type != 1 && type != 3 && type != 4;
+        if (hasType) {
+            return String.format("\033[%dm%s\033[0m", colour, content);
+        } else {
+            return String.format("\033[%d;%dm%s\033[0m", colour, type, content);
+        }
+    }
+
     public void menu() {
-        System.out.println("=========== Coco ===========");
-        System.out.println("1. Add a new milk tea");
-        System.out.println("2. Update a milk tea by name");
-        System.out.println("3. Delete a milk tea by name");
-        System.out.println("4. List milk tea by various properties");
-        System.out.println("5. Calculate profit");
-        System.out.println("6. Save current states to file");
-        System.out.println("7. Restore store from file");
-        System.out.println("8. Exit");
+        System.out.println(getColour("================ Coco ================",33,100));
+        System.out.println(getColour("1. Add a new milk tea",34,10));
+        System.out.println(getColour("2. Update a milk tea by name",36,10));
+        System.out.println(getColour("3. Delete a milk tea by name",34,10));
+        System.out.println(getColour("4. List milk tea by various properties",36,10));
+        System.out.println(getColour("5. Calculate profit",34,10));
+        System.out.println(getColour("6. Save current states to file",36,10));
+        System.out.println(getColour("7. Restore store from file",34,10));
+        System.out.println(getColour("8. Exit",31,10));
     }
 
     public boolean parseBooleanInput(String msg) {
@@ -81,7 +90,7 @@ public class Coco {
         input.nextLine();
         System.out.println("Input the name of target milk tea");
         String productName = input.nextLine();
-        System.out.println("Input the key you want to modify");
+        System.out.println("Input the key you want to modify(cost/sellingPrice/inWarehouse)");
         String key = input.nextLine();
         switch (key) {
             case "cost", "sellingPrice" -> {

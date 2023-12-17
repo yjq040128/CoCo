@@ -141,7 +141,9 @@ public class Store {
                 shouldSaveProducts.add(products[i]);
         }
         bufferedWriter.write(JSON.toJSONString(shouldSaveProducts));
+        bufferedWriter.flush();
         bufferedWriter.close();
+        
     }
 
     public void clear() {
